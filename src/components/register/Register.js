@@ -1,0 +1,72 @@
+import React from "react";
+import { Form, Input, Button, Checkbox } from 'antd';
+import {Link} from 'react-router-dom';
+import { register } from '../../api/auth';
+
+function Register() {
+  const onFinish = (values) => {
+    console.log('Success:', values);
+    register(values)
+  };
+
+
+
+  return (
+    <Form
+      name="basic"
+      initialValues={{ remember: true }}
+  onFinish={onFinish}
+
+>
+  <Form.Item
+    label="Username"
+    name="name"
+    rules={[{ required: true, message: 'Please input your username!' }]}
+  >
+    <Input />
+  </Form.Item>
+
+  <Form.Item
+    label="Email"
+    name="email"
+    rules={[{ required: true, message: 'Please input your email!' }]}
+  >
+    <Input />
+  </Form.Item>
+
+  <Form.Item
+    label="Password"
+    name="password"
+    rules={[{ required: true, message: 'Please input your password!' }]}
+  >
+    <Input.Password />
+  </Form.Item>
+
+
+  <Form.Item
+    label="Confirm Password"
+    name="password2"
+    rules={[{ required: true, message: 'Please input your password!' }]}
+  >
+   <Input.Password />
+  </Form.Item>
+    <Form.Item
+    label="Phone"
+    name="phone"
+    rules={[{ required: true, message: 'Please input your phone!' }]}
+  >
+       <Input />
+  </Form.Item>
+
+
+  <Form.Item>
+        <Button type="primary" htmlType="submit">
+      Register
+    </Button>
+    Or 
+        <Link to="/">Login</Link>
+  </Form.Item>
+</Form>)
+}
+
+export default Register;
