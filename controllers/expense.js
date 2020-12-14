@@ -1,15 +1,29 @@
-let mongoose = require('mongoose'),
-    express = require('express'),
+let express = require('express'),
     router = express.Router();
 
-let user = require('../models/Expense');
+    let Expense = require('../models/Expense');
+    let Budget = require('../models/Budget');
 
 router.route('/create').post((req, res, next) => {
-    user.create(req.body, (error, data) => {
+    Expense.create(req.body, (error, data) => {
         if (error) {
             return next(error)
         } else {
             console.log(data)
+            Budget.findOne({ name: req.body.budget }, function(err, obj) {
+                const id = obj._id;
+                Budget.updateOne(
+                    { _id: id },
+                  { $inc: { capacity: req.body.expense } }
+                ).then((data) => {
+                  if (!data) {
+                    return res.status(400).json({
+                      errors: "Not Updated",             
+                    });
+                  }
+                  next();
+                });
+              });
             res.json(data)
         }
     })
@@ -17,7 +31,7 @@ router.route('/create').post((req, res, next) => {
 
 
 router.route('/').get((req, res, next) => {
-  user.find((error, data) => {
+  Expense.find((error, data) => {
       if (error) {
           return next(error)
       } else {
@@ -25,5 +39,15 @@ router.route('/').get((req, res, next) => {
       }
   })
 })
+
+router.route('/month/chart').get((req, res, next) => {
+    Expense.find((error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+  })
 
 module.exports = router;

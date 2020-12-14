@@ -12,6 +12,12 @@ let userSchema = new Schema({
       type: Date,
       required: true,
     },
+    capacity:{
+        
+            type:Number,
+            default:0 
+        
+    }
   }, {
         collection: 'budgetapp'
     })

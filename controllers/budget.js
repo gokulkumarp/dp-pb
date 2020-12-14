@@ -2,10 +2,10 @@ let mongoose = require('mongoose'),
     express = require('express'),
     router = express.Router();
 
-let user = require('../models/Budget');
+let Budget = require('../models/Budget');
 
 router.route('/create').post((req, res, next) => {
-    user.create(req.body, (error, data) => {
+    Budget.create(req.body, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -17,7 +17,7 @@ router.route('/create').post((req, res, next) => {
 
 
 router.route('/').get((req, res, next) => {
-  user.find((error, data) => {
+  Budget.find((error, data) => {
       if (error) {
           return next(error)
       } else {
@@ -25,5 +25,17 @@ router.route('/').get((req, res, next) => {
       }
   })
 })
+
+router.route('/month/chart').get((req, res, next) => {
+    const month = new Date().getMonth();
+    const year = parseInt(2020);
+    Budget.find((error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+  });
 
 module.exports = router;

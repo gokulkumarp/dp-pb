@@ -33,8 +33,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cors());
-//app.use('/api/budget', budgetRoute)
-//app.use('/api/expense', expenseRoute)
+app.use('/api/budget', budgetRoute)
+app.use('/api/expense', expenseRoute)
 app.use('/api/auth', authRoute);
 
 const port = process.env.PORT || 4000;

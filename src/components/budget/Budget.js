@@ -17,6 +17,7 @@ export default class Budget extends Component {
             .catch(function (error) {
                 console.log(error);
             })
+            
     }
 
     dataTable() {

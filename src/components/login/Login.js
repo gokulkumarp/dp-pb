@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import {Link,useHistory} from 'react-router-dom';
 import { login } from '../../api/auth';
+import "./login.css"
 
 const Login = () => {
   let history = useHistory();
@@ -9,7 +10,7 @@ const Login = () => {
     
     login(values).then((response) => {
       console.log('response', response);
-      if(response.success){
+      if(response && response.success){
         history.push("/user/dashboard");
       }
     })

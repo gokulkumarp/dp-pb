@@ -1,5 +1,5 @@
 import React, { Component }  from "react";
-import axios from 'axios'
+import { addBudget } from "../../api/budget";
 export default class AddBudget extends Component {
 
   constructor(props) {
@@ -39,14 +39,9 @@ export default class AddBudget extends Component {
 
       };
 
-      axios.post('http://localhost:4000/api/budget/create', userObject)
-          .then((res) => {
-              console.log(res.data)
-          }).catch((error) => {
-              console.log(error)
-          });
-
-      this.setState({ name: '', budget: '', date:'' })
+      addBudget(userObject).then((response)=>{
+        this.setState({ name: '', expense:'', budget: '' })
+      })
   }
 
 

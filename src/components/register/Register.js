@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Input, Button, Checkbox } from 'antd';
 import {Link} from 'react-router-dom';
 import { register } from '../../api/auth';
+import "./register.css"
 
 function Register() {
   const onFinish = (values) => {
@@ -14,6 +15,7 @@ function Register() {
   return (
     <Form
       name="basic"
+      className="register-form"
       initialValues={{ remember: true }}
   onFinish={onFinish}
 

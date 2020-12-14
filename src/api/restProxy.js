@@ -10,3 +10,15 @@ export const post = (url, data) => {
       console.log(err);
     });
 };
+
+export const get = (url) => {
+  return axios
+    .get(url)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
