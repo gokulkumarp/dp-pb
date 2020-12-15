@@ -7,7 +7,7 @@ import Navbar from "../navBar/NavBar";
 
 function Dashboard() {
   return <div>
-      <div class="side-nav">
+      <div className="side-nav">
         <BudgetPieChart/>
         </div>
         <div>

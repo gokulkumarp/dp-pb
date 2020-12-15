@@ -72,7 +72,7 @@ export default class AddExpense extends Component {
                   <div className="form-group">
                   <select
                     id="expense-budget"
-                    class="form-control"
+                    className="form-control"
                     onChange={this.onChangeUserBudget}
                   >
                       <optgroup>

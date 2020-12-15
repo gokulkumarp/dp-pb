@@ -2,7 +2,9 @@ import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import {Link,useHistory} from 'react-router-dom';
 import { login } from '../../api/auth';
+import LocalStorageService from '../../utils/localstorage';
 import "./login.css"
+
 
 const Login = () => {
   let history = useHistory();
@@ -11,6 +13,7 @@ const Login = () => {
     login(values).then((response) => {
       console.log('response', response);
       if(response && response.success){
+        LocalStorageService.setData('token', response.token);
         history.push("/user/dashboard");
       }
     })

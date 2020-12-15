@@ -53,7 +53,7 @@ exports.register = (req, res) => {
           return res.json({
             success: true,
             user: { _id, name, email },
-            token: `Bearer ${accessToken}`,
+            token: accessToken,
             refresh: refreshToken,
           });
         })
@@ -99,7 +99,7 @@ exports.login = (req, res) => {
       return res.json({
         success: true,
         user: { _id, name, email },
-        token: `Bearer ${accessToken}`,
+        token: accessToken,
         refresh: refreshToken,
       });
     }
@@ -136,7 +136,7 @@ exports.token = (req, res) => {
     return res.json({
       success: true,
       user: { _id: id, name, email },
-      token: `Bearer ${accessToken}`,
+      token: accessToken,
     });
   });
 };
