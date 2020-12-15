@@ -1,6 +1,3 @@
-
-
-
 let url = 'mongodb://localhost:27017/final_budget'
 
 
@@ -10,9 +7,12 @@ let cors = require('cors');
 let bodyParser = require('body-parser');
 
 
-const budgetRoute = require('./controllers/budget')
-const expenseRoute = require('./controllers/expense')
+const budgetRoute = require('./routes/budget')
+const expenseRoute = require('./routes/expense')
 const authRoute = require('./routes/auth');
+
+const { authToken } = require('./controllers/auth');
+
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
@@ -33,8 +33,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cors());
-app.use('/api/budget', budgetRoute)
-app.use('/api/expense', expenseRoute)
+//app.use('/api/budget', budgetRoute)
+app.use('/api/expense',authToken, expenseRoute)
 app.use('/api/auth', authRoute);
 
 const port = process.env.PORT || 4000;

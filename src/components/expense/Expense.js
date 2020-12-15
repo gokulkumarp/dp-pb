@@ -10,7 +10,7 @@ export default class Expense extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/api/Expense')
+        axios.get('http://localhost:4000/api/expense')
             .then(res => {
                 this.setState({ usersCollection: res.data });
             })

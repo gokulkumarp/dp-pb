@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require('uuid');
 const expressJwt = require("express-jwt");
 const validateRegisterInput = require("../validations/register");
 const validateLoginInput = require("../validations/login");
@@ -7,7 +8,8 @@ const validateLoginInput = require("../validations/login");
 let refreshTokens = [];
 
 const generateAccessToken = (user) => {
-  return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "60s" });
+  // return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "60s" });
+  return jwt.sign(user, process.env.JWT_SECRET);
 };
 
 // Register User
@@ -28,6 +30,7 @@ exports.register = (req, res) => {
         email: req.body.email,
         password: req.body.password,
         phone: req.body.phone,
+        id:uuidv4()
       });
 
       newUser
@@ -52,9 +55,7 @@ exports.register = (req, res) => {
           const { _id, name, email } = user;
           return res.json({
             success: true,
-            user: { _id, name, email },
-            token: accessToken,
-            refresh: refreshToken,
+            message:"Registered Successfully"
           });
         })
         .catch((err) => console.log(err));
@@ -86,19 +87,19 @@ exports.login = (req, res) => {
       }
       // Generate a token for authentication
       const payload = {
-        id: user._id,
+        id: user.id,
         name: user.name,
         email: user.email,
       };
       const accessToken = generateAccessToken(payload);
       const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN);
       refreshTokens.push(refreshToken);
-      res.cookie("token", accessToken);
+     // res.cookie("token", accessToken);
       // Return user and token to client
-      const { _id, name, email } = user;
+      const { id, name, email } = user;
       return res.json({
         success: true,
-        user: { _id, name, email },
+        user: { id, name, email },
         token: accessToken,
         refresh: refreshToken,
       });
@@ -143,7 +144,7 @@ exports.token = (req, res) => {
 
 // Logout User
 exports.logout = (req, res) => {
-  res.clearCookie("token");
+  //res.clearCookie("token");
   res.json({
     message: "Logout Successful",
   });
@@ -173,7 +174,7 @@ exports.authToken = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) {
     return res.status(401).json({
-      errors: "Token expired",
+      errors: "Unauthorized User",
     });
   }
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {

@@ -1,7 +1,8 @@
 import React from "react";
 import BudgetBarChart from "../budgetBarChart/BudgetBarChart";
 import BudgetPieChart from "../budgetChart/BudgetPieChart";
-import ExpensePieChart from "../expensePieChart/ExpensePieChart"
+import ExpensePieChart from "../expensePieChart/ExpensePieChart";
+import Expense from "../expense/Expense";
 
 import Navbar from "../navBar/NavBar";
 
@@ -15,6 +16,9 @@ function Dashboard() {
         </div>
         <div>
           <ExpensePieChart/>
+        </div>
+        <div>
+        <Expense/>
         </div>
   </div>;
 }

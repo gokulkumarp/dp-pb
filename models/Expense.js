@@ -11,6 +11,12 @@ let userSchema = new Schema({
     budget: {
         type: String
     },
+    userId:{
+        type: String 
+    },
+    id:{
+        type: String 
+    }
   }, {
         collection: 'expenses'
     })
