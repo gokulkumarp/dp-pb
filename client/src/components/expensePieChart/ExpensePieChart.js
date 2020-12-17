@@ -22,7 +22,7 @@ const ExpensePieChart = () => {
       })
       .catch((err) => console.log(err));
   };
-
+  
   const { title, expense } = chartExpense;
   const data = {
     labels: title,
@@ -30,10 +30,10 @@ const ExpensePieChart = () => {
       {
         data: expense,
         backgroundColor: [
-          "#F4D06F",
-          "#FF8811",
-          "#9DD9D2",
-          "#FFF8F0",
+          "#ff6384",
+          "#36a2eb",
+          "#cc65fe",
+          "#ffce56",
           "#392F5A",
         ],
       },

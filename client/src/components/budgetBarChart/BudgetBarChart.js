@@ -29,23 +29,25 @@ const BudgetBarChart = () => {
   };
 
   const { budget, capacity, title } = chartBudget;
-
+  var randomColorGenerator = function () { 
+    return '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
+};
   const data = {
     labels: title,
     datasets: [
       {
         label: "Budget",
         data: budget,
-        backgroundColor: "rgba(244, 208, 111, 0.7)",
-        hoverBackgroundColor: "rgba(244, 208, 111, 0.7)",
+        backgroundColor: randomColorGenerator(),
+        hoverBackgroundColor: randomColorGenerator(),
         hoverBorderWidth: 2,
         hoverBorderColor: "lightgrey",
       },
       {
         label: "Expense",
         data: capacity,
-        backgroundColor: "rgba(57, 47, 90, 0.7)",
-        hoverBackgroundColor: "rgba(57, 47, 90, 0.7)",
+        backgroundColor: randomColorGenerator(),
+        hoverBackgroundColor: randomColorGenerator(),
         hoverBorderWidth: 2,
         hoverBorderColor: "lightgrey",
       },

@@ -26,7 +26,7 @@ const BudgetPieChart = () => {
   };
 
   const { title, budget } = chartBudget;
-
+ 
   const data = {
     labels: title,
     datasets: [

@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import BudgetData from '../dataTable/BudgetData'
 import { getBudget } from '../../api/budget';
-import moment from 'moment'
-import { Table, Tag, Space } from 'antd';
-import Navbar from '../navBar/NavBar';
+import Navbar from "../navBar/NavBar";
 
-export default class Budget extends Component {
+export default class Expense extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { usersCollection: [], data: [] }
-    
-        
+        this.state = { usersCollection: [] };
     }
 
     getBudgetData = async () =>{
@@ -36,59 +31,34 @@ export default class Budget extends Component {
           }
     }
 
-    dataTable(){
-        
-       
+    dataTable() {
+        return this.state.usersCollection.map((data, i) => {
+            return <BudgetData obj={data} key={i} />;
+        });
     }
 
     render() {
-        const columns = [
-            {
-              title: 'Budget_Name',
-              dataIndex: 'Budget_Name',
-              key: 'Budget_Name',
-            },
-            {
-              title: 'Budget_Limit',
-              dataIndex: 'Budget_Limit',
-              key: 'Budget_Limit',
-            },
-            {
-              title: 'Budget_Month',
-              dataIndex: 'Budget_Month',
-              key: 'Budget_Month',
-            },
-            {
-              title: 'Budget_Status',
-              key: 'Budget_Status',
-              dataIndex: 'Budget_Status',
-            }]
-            //     const data = [{
-            //       Budget_Name: '',
-            //       Budget_Limit: '',
-            //       Budget_Month:'',
-            //       Budget_Status:''
-            //     }]
-            // for( let i = 0 ; i < this.state.usersCollection.length; i++){
-            //         data[i].Budget_Name = this.state.usersCollection[i].name;
-            //         data[i].Budget_Limit = this.state.usersCollection[i].budget;
-            //         data[i].Budget_Month = this.state.usersCollection[i].date;
-            //         data[i].Budget_Status = this.state.usersCollection[i].capacity;
-            // }
-        this.state.usersCollection.map((table, i) => {
-            this.state.data = [
-                {
-                  Budget_Name: table.name,
-                  Budget_Limit: table.budget,
-                  Budget_Month: moment(table.date).format("MMMM"),
-                  Budget_Status: table.capacity < table.budget ? "Good" : "Exceeded"
-                }]
-        });
         return (
           <>
-          <Navbar/>
-            <Table columns={columns} dataSource={ this.state.data } />
-            </>
+<Navbar/>          <div className="wrapper-users">
+          <div className="con">
+              <table className="styled-table">
+                  <thead className="thead-dark">
+                      <tr>
+                          <td>Budget ID</td>
+                          <td>Budget Name</td>
+                          <td>Budget Limit</td>
+                          <td>Budget Month</td>
+                          <td>Budget Status</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {this.dataTable()}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      </>
         )
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ExpenseData from '../dataTable/ExpenseData'
 import { getExpense } from '../../api/expense';
 import Navbar from '../navBar/NavBar';
-
+import "./expense.css"
 export default class Expense extends Component {
 
     constructor(props) {
@@ -42,8 +42,8 @@ export default class Expense extends Component {
             <>
             <Navbar></Navbar>
             <div className="wrapper-users">
-                <div className="container">
-                    <table className="table table-striped table-dark">
+                <div className="con">
+                    <table className="styled-table">
                         <thead className="thead-dark">
                             <tr>
                                 <td>Expense ID</td>

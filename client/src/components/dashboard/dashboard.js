@@ -42,6 +42,8 @@ const Dashboard = () => {
     <NavBar/>
   <div class="contain">
   <Divider></Divider>
+  
+<h1 id="budchar">Budget chart&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Budget and Expense Comparison</h1>
 
 <Row>
  
@@ -50,6 +52,7 @@ const Dashboard = () => {
 <Col span={12}><BudgetBarChart/></Col>
 </Row>
 <Divider></Divider>
+<h1>Expense Chart &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Month Chart</h1>
 <Row>
 <Col span={12}> <ExpensePieChart/></Col>
 <Col span={12}><MonthChart/></Col>

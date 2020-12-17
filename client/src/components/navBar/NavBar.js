@@ -25,7 +25,7 @@ function Navbar() {
   const showSidebar = () => setSidebar(!sidebar);
   const handleOk = () => {
     getNewAccessToken().then((data) => {
-      LocalStorageService.clearData("token");
+      LocalStorageService.clearData("token")
       authenticate_access(data, () => {
         setIsModalVisible(false);
       });
@@ -53,9 +53,12 @@ function Navbar() {
           let tokenExpiration = decoded.exp;
           let tokenExpirationTimeInSeconds =
             tokenExpiration - moment(Math.floor(Date.now() / 1000));
-          if (tokenExpiration && tokenExpirationTimeInSeconds === 20) {
+          // if (tokenExpiration && tokenExpirationTimeInSeconds === 20) {
+          //   setIsModalVisible(true);
+          // }
+          setTimeout(() => {
             setIsModalVisible(true);
-          }
+          },40000);
     
         }
       });

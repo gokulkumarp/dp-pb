@@ -49,13 +49,8 @@ export const authenticate_access = (data, next) => {
 export const getNewAccessToken = () => {
   if (LocalStorageService.getData("refresh")) {
     const refresh = LocalStorageService.getData("refresh");
-    return axios
-      .post(`/api/auth/token`, {
+    return post(`/api/auth/token`, {
         token: refresh,
       })
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => console.log(err));
   }
 };

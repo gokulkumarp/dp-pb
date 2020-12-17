@@ -9,7 +9,7 @@ let refreshTokens = [];
 
 const generateAccessToken = (user) => {
   // return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "60s" });
-  return jwt.sign(user, process.env.JWT_SECRET, {expiresIn:"60s"});
+  return jwt.sign(user, process.env.JWT_SECRET, {expiresIn:"240s"});
 };
 
 // Register User
@@ -109,6 +109,7 @@ exports.login = (req, res) => {
 
 // New Token Generation
 exports.token = (req, res) => {
+  console.log("token refresh hits")
   const refreshToken = req.body.token;
   if (!refreshToken) {
     return res.status(401).json({
@@ -120,7 +121,7 @@ exports.token = (req, res) => {
       errors: "Invalid Refresh Token",
     });
   }
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, user) => {
+  jwt.verify(refreshToken, 'abcdef', (err, user) => {
     if (err) {
       return res.status(403).json({
         errors: err,
