@@ -1,5 +1,7 @@
 import React, { Component }  from "react";
 import { addBudget } from "../../api/budget";
+import Navbar from "../navBar/NavBar";
+import './addBudget.css'
 export default class AddBudget extends Component {
 
   constructor(props) {
@@ -47,6 +49,8 @@ export default class AddBudget extends Component {
 
   render() {
       return (
+          <>
+          <Navbar/>
           <div className="addBudget">
               <form onSubmit={this.onSubmit}>
                   <div className="form-group">
@@ -58,6 +62,7 @@ export default class AddBudget extends Component {
                       <input type="text" value={this.state.budget} onChange={this.onChangeUserBudget} className="form-control" />
                   </div>
                   <div className="form-group">
+                      <label>Date</label>
                       <input type="datetime-local" value={this.state.date} onChange={this.onChangeUserDate} className="form-control" />
                   </div>
                   <div className="form-group">
@@ -65,6 +70,7 @@ export default class AddBudget extends Component {
                   </div>
               </form>
           </div>
+          </>
       )
   }
 }

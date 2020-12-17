@@ -4,6 +4,7 @@ import {Link,useHistory} from 'react-router-dom';
 import { login } from '../../api/auth';
 import LocalStorageService from '../../utils/localstorage';
 import "./login.css"
+import Navbar from '../navBar/NavBar';
 
 
 const Login = () => {
@@ -24,6 +25,8 @@ const Login = () => {
 
 
   return (
+    <>
+    <Navbar/>
     <Form
       name="normal_login"
       className="login-form"
@@ -62,7 +65,8 @@ const Login = () => {
         Or &nbsp; &nbsp;
         <Link to="/register">register now!</Link>
       </Form.Item>
-    </Form>)
+    </Form>
+    </>)
 }
 
 export default Login;

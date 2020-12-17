@@ -8,9 +8,8 @@ import { Row, Col, Divider} from 'antd';
 import "./dashboard.css"
 import Expense from "../expense/Expense";
 
-import Navbar from "../navBar/NavBar";
 import MonthChart from "../monthChart/MonthChart";
-
+import NavBar from '../navBar/NavBar'
 
 const Dashboard = () => {
   // const [idle, setIdle] = useState(0);
@@ -39,6 +38,8 @@ const Dashboard = () => {
   // })
 
   return (
+    <>
+    <NavBar/>
   <div class="contain">
   <Divider></Divider>
 
@@ -54,7 +55,8 @@ const Dashboard = () => {
 <Col span={12}><MonthChart/></Col>
 </Row>
 <Divider></Divider>
-  </div>)
+  </div>
+  </>)
 }
 
 export default Dashboard;

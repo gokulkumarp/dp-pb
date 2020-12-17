@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ExpenseData from '../dataTable/ExpenseData'
 import { getExpense } from '../../api/expense';
+import Navbar from '../navBar/NavBar';
 
 export default class Expense extends Component {
 
@@ -38,6 +39,8 @@ export default class Expense extends Component {
 
     render() {
         return (
+            <>
+            <Navbar></Navbar>
             <div className="wrapper-users">
                 <div className="container">
                     <table className="table table-striped table-dark">
@@ -56,6 +59,7 @@ export default class Expense extends Component {
                     </table>
                 </div>
             </div>
+            </>
         )
     }
 }

@@ -53,10 +53,10 @@ function Navbar() {
           let tokenExpiration = decoded.exp;
           let tokenExpirationTimeInSeconds =
             tokenExpiration - moment(Math.floor(Date.now() / 1000));
-        //  setTimeout(()=>{
-        //    if(tokenExpirationTimeInSeconds)
-        //   setIsModalVisible(true);
-        //  }, 40000)
+          if (tokenExpiration && tokenExpirationTimeInSeconds === 20) {
+            setIsModalVisible(true);
+          }
+    
         }
       });
     }
@@ -106,9 +106,9 @@ function Navbar() {
           )}
           {(LocalStorageService.getData('token')) && (
             <React.Fragment>
-              <li>
+              <li id="log">
                 <span
-                  style={{ cursor: "pointer", color: "#000000" }}
+                  style={{ cursor: "pointer", color: "#f5f5f5" }}
                   onClick={() =>
                     logout(() => {
                       history.push("/");
@@ -118,11 +118,11 @@ function Navbar() {
                   Logout
                 </span>
               </li>
-              <li>
+              <li id="reg">
                 <span>
                   <Link
                     to="/user/dashboard"
-                    style={{ cursor: "pointer", color: "#000000" }}
+                    style={{ cursor: "pointer", color: "#f5f5f5" }}
                   >
                     Dashboard
                   </Link>

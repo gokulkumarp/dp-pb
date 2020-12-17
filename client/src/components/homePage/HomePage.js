@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavBar from '../navBar/NavBar'
+
 import "./homepage.css"
 const HomePage = () => {
   const homeLayout = () => (
@@ -44,7 +46,10 @@ get out of debt, and save more money.
     </div>
     </div>
   );
-  return <React.Fragment>{homeLayout()}</React.Fragment>;
+  return (    <>
+  <NavBar/>
+    <React.Fragment>{homeLayout()}</React.Fragment>
+    </>);
 };
 
 export default HomePage;

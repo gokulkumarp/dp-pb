@@ -9,7 +9,7 @@ let refreshTokens = [];
 
 const generateAccessToken = (user) => {
   // return jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "60s" });
-  return jwt.sign(user, process.env.JWT_SECRET, {expiresIn:"60000s"});
+  return jwt.sign(user, process.env.JWT_SECRET, {expiresIn:"60s"});
 };
 
 // Register User

@@ -4,11 +4,10 @@ import axios from 'axios';
 
 
 export const login = (data) => {
-  return post('http://localhost:4000/api/auth/login', data);
+  return post('/api/auth/login', data);
 };
-
 export const register = (data) => {
-  return post('http://localhost:4000/api/auth/register', data);
+  return post('/api/auth/register', data);
 };
 
 
@@ -32,7 +31,7 @@ export const logout = (next) => {
     LocalStorageService.clearData("refresh");
     next();
     return axios
-      .get(`api/auth/logout`)
+      .get(`/api/auth/logout`)
       .then((res) => {
         console.log("signout", res.data);
       })
@@ -51,7 +50,7 @@ export const getNewAccessToken = () => {
   if (LocalStorageService.getData("refresh")) {
     const refresh = LocalStorageService.getData("refresh");
     return axios
-      .post(`http://localhost:4000/api/auth/token`, {
+      .post(`/api/auth/token`, {
         token: refresh,
       })
       .then((res) => {

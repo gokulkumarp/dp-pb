@@ -3,6 +3,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import {Link} from 'react-router-dom';
 import { register } from '../../api/auth';
 import "./register.css"
+import Navbar from "../navBar/NavBar";
 
 function Register() {
   const onFinish = (values) => {
@@ -13,6 +14,8 @@ function Register() {
 
 
   return (
+    <>
+    <Navbar/>
     <Form
       name="basic"
       className="register-form"
@@ -69,7 +72,8 @@ function Register() {
     Or 
         <Link to="/">Login</Link>
   </Form.Item>
-</Form>)
+</Form>
+</>)
 }
 
 export default Register;

@@ -2,6 +2,7 @@ import React, { Component }  from "react";
 import axios from 'axios'
 import {addExpense} from '../../api/expense';
 import { getBudget } from "../../api/budget";
+import Navbar from "../navBar/NavBar";
 
 export default class AddExpense extends Component {
 
@@ -70,6 +71,8 @@ export default class AddExpense extends Component {
 
   render() {
       return (
+        <>
+        <Navbar/>
           <div className='addBudget'>
               <form onSubmit={this.onSubmit}>
                   <div className="form-group">
@@ -81,6 +84,7 @@ export default class AddExpense extends Component {
                       <input type="text" value={this.state.expense} onChange={this.onChangeUserExpense} className="form-control" />
                   </div>
                   <div className="form-group">
+                    <label>Budget</label>
                   <select
                     id="expense-budget"
                     class="form-control"
@@ -100,10 +104,10 @@ export default class AddExpense extends Component {
                     </select>
                   </div>
                   <div className="form-group">
-                      <input type="submit" value="Add Budget" className="btn btn-success btn-block" />
+                      <input type="submit" value="Add Expense" className="btn btn-success btn-block" />
                   </div>
               </form>
-          </div>
+          </div></>
       )
   }
 }

@@ -4,6 +4,7 @@ import BudgetData from '../dataTable/BudgetData'
 import { getBudget } from '../../api/budget';
 import moment from 'moment'
 import { Table, Tag, Space } from 'antd';
+import Navbar from '../navBar/NavBar';
 
 export default class Budget extends Component {
 
@@ -84,7 +85,10 @@ export default class Budget extends Component {
                 }]
         });
         return (
+          <>
+          <Navbar/>
             <Table columns={columns} dataSource={ this.state.data } />
+            </>
         )
     }
 }
