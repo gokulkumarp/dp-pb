@@ -20,6 +20,7 @@ function Register() {
   onFinish={onFinish}
 
 >
+  <h1> Register</h1>
   <Form.Item
     label="Username"
     name="name"

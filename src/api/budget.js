@@ -9,6 +9,11 @@ export const getBudget = () => {
   };
 
 export const getBudgetChart = (data) =>{
-    return get('http://localhost:4000/api/budget/month/chart', data)
+    return get('http://localhost:4000/api/budget', data)
+}
+
+
+export const monthBudget = ()=>{
+  return get('http://localhost:4000/api/budget/monthBudget');
 }
 

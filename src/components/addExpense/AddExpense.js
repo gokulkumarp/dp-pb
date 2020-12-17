@@ -1,6 +1,7 @@
 import React, { Component }  from "react";
 import axios from 'axios'
 import {addExpense} from '../../api/expense';
+import { getBudget } from "../../api/budget";
 
 export default class AddExpense extends Component {
 
@@ -20,15 +21,25 @@ export default class AddExpense extends Component {
           usersCollection: []
       }
   }
+  getBudgetData = async () =>{
+    await getBudget().then((res)=>{
+      for(var i=0;i<res.length;i++){
+        this.state.usersCollection.push(res[i].name);
+     }
+    })
+    return this.state.usersCollection
+  }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/api/budget')
-        .then(res => {
-            this.setState({ usersCollection: res.data });
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+        if (this.state.usersCollection.length === 0) {
+          (async () => {
+            try {
+              this.setState({ usersCollection: await this.getBudgetData() });
+            } catch (e) {
+              //...handle the error...
+            }
+          })();
+        }
 }
 
   onChangeUserName(e) {
@@ -72,18 +83,19 @@ export default class AddExpense extends Component {
                   <div className="form-group">
                   <select
                     id="expense-budget"
-                    className="form-control"
+                    class="form-control"
                     onChange={this.onChangeUserBudget}
                   >
                       <optgroup>
                       <option value="" disabled selected>
                         Select Budget
                       </option>
-                      {this.state.usersCollection.map((budget, index) => (
-                        <option key={index} value={budget.name} >
-                          {budget.name}
+                      {this.state.usersCollection.length===0?(<div>Loading..</div>):(this.state.usersCollection.map((budget, index) => (
+                        <option key={index} value={budget} >
+                          {budget}
                         </option>
-                      ))}
+                      )))}
+                      
                     </optgroup>
                     </select>
                   </div>

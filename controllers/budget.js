@@ -23,6 +23,29 @@ exports.read = (req, res,next) => {
   })
 }
 
+exports.monthBudget = (req, res, next)=>{
+    Budget.aggregate(
+        [
+          {
+            $group: {
+              _id: { $month: "$date" },
+              total: {
+                $sum: "$budget",
+              },
+            },
+          },
+        ],
+        (err, data) => {
+          if (err) {
+            return res.status(400).json({
+              error: err,
+            });
+          }
+          return res.json(data);
+        }
+      );
+}
+
 // router.route('/month/chart').get((req, res, next) => {
 //     const month = new Date().getMonth();
 //     const year = parseInt(2020);

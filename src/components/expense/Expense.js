@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import ExpenseData from '../dataTable/ExpenseData'
+import { getExpense } from '../../api/expense';
 
 export default class Expense extends Component {
 
@@ -9,14 +9,25 @@ export default class Expense extends Component {
         this.state = { usersCollection: [] };
     }
 
+    getExpenseData = async () =>{
+        await getExpense().then((res)=>{
+          for(var i=0;i<res.length;i++){
+            this.state.usersCollection.push(res[i]);
+         }
+        })
+        return this.state.usersCollection
+      }
+
     componentDidMount() {
-        axios.get('http://localhost:4000/api/expense')
-            .then(res => {
-                this.setState({ usersCollection: res.data });
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+        if (this.state.usersCollection.length === 0) {
+            (async () => {
+              try {
+                this.setState({ usersCollection: await this.getExpenseData() });
+              } catch (e) {
+                //...handle the error...
+              }
+            })();
+          }
     }
 
     dataTable() {

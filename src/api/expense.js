@@ -5,5 +5,10 @@ export const addExpense = (data) => {
 };
 
 export const getExpenseChart = () =>{
-  return get('http://localhost:4000/api/expense/month/chart')
+  return get('http://localhost:4000/api/expense/monthlyReport')
 }
+
+
+export const getExpense = () => {
+  return get('http://localhost:4000/api/expense');
+};

@@ -19,7 +19,7 @@ class BudgetData extends Component {
                     {moment(this.props.obj.date).format("MMMM")}
                 </td>
                 <td>
-                    good
+                {this.props.obj.capacity < this.props.obj.budget ? "Good" : "Exceeded"}
                 </td>
             </tr>
         );

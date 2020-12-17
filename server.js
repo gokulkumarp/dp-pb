@@ -5,6 +5,8 @@ let express = require('express');
 let mongoose = require('mongoose');
 let cors = require('cors');
 let bodyParser = require('body-parser');
+const compression = require("compression");
+
 
 
 const budgetRoute = require('./routes/budget')
@@ -33,7 +35,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cors());
-//app.use('/api/budget', budgetRoute)
+app.use(compression());
+
+app.use('/api/budget',authToken, budgetRoute)
 app.use('/api/expense',authToken, expenseRoute)
 app.use('/api/auth', authRoute);
 

@@ -14,6 +14,7 @@ const Login = () => {
       console.log('response', response);
       if(response && response.success){
         LocalStorageService.setData('token', response.token);
+        LocalStorageService.setData('refresh', response.token);
         history.push("/user/dashboard");
       }
     })
@@ -29,6 +30,7 @@ const Login = () => {
       initialValues={{ remember: true }}
       onFinish={onFinish}
     >
+      <h1>Login</h1>
       <Form.Item
         name="email"
         rules={[{ required: true, message: 'Please input your Username!' }]}
@@ -50,16 +52,14 @@ const Login = () => {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
+        
       </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
           Log in
         </Button>
-        Or 
+        Or &nbsp; &nbsp;
         <Link to="/register">register now!</Link>
       </Form.Item>
     </Form>)

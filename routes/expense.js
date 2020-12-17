@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { create, read,readById,monthlyReport } = require('../controllers/expense');
 
-router.post('/', create);
+router.post('/create', create);
 router.get('/', read);
 router.get('/:id', readById);
 router.get('/monthlyReport',monthlyReport)
